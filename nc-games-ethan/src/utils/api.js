@@ -1,11 +1,11 @@
 import axios from "axios";
 
-const ncGames = axios.create({baseURL:"https://ethan-games.herokuapp.com/",});
+const ncGames = axios.create({baseURL:"https://back-end-project-ethanf.herokuapp.com",});
 
 export const getReviews = () => {
     return ncGames.get('/api/reviews')
     .then((res) => {
-        return res.data.reviews;
+        return res.data;
     })
 }
 
@@ -19,14 +19,14 @@ export const getCategories = () => {
 export const getSingleReview = (reviewNumber) => {
     return ncGames.get(`/api/reviews/${reviewNumber}`)
     .then((res) => {
-        return res.data.review;
+        return res.data[0];
     })
 }
 
 export const getSingleComment = (reviewNumber) => {
     return ncGames.get(`/api/reviews/${reviewNumber}/comments`)
     .then((res) => {
-        return res.data.comments;
+        return res.data;
     })
 }
 
@@ -40,6 +40,6 @@ export const getSingleUser = (userName) => {
 export const getFilteredReviews = (category) => {
     return ncGames.get(`/api/reviews/?category=${category}`)
     .then((res) => {
-        return res.data.reviews;
+        return res.data;
     })
 }

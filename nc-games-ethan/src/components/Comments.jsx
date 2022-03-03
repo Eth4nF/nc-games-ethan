@@ -15,16 +15,20 @@ const Comments = () => {
         })
     }, []);
 
-    console.log(singleComment);
+    console.log(singleComment, "bazinga");
 
     return (
         <div>
             <ul className="reviewLi">
                 {
-                    singleComment.map((element) => {
+                    singleComment.map((element, id) => {
+                        console.log(element.row, "hello")
+                        let elementRow = element.row;
+                        let splitElement = elementRow.split(",");
+                        let moreSplitElement = splitElement[4].split(")");
                         return (
-                            <li>
-                                {element.body}
+                            <li key={id}>
+                                {moreSplitElement[0]}
                             </li>
                         )
                     })
