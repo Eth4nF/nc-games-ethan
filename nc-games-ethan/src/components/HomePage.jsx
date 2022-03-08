@@ -26,8 +26,8 @@ const HomePage = () => {
                 return (
                   <li key={element.review_id} className="reviewLi">
                     <Link to={`/reviews/${element.review_id}`} className ="reviewLink">{element.title}</Link>
-                    <img src={`${element.review_img_url}`} alt={`${element.title}`} width="100" height="100" className="reviewImg"></img>
-                    <p className="reviewPara">{element.review_body}</p>
+                    <img src={`${element.review_img_url}`} alt={`${element.title}`} width="200" height="200" className="reviewImg"></img>
+                    <p className="reviewPara">Review by: {element.owner}</p>
                   </li>
                 )
               })

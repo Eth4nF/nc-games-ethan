@@ -20,6 +20,7 @@ const Categories = () => {
     return (
         <div>
             <h1 className="categoriesHead">Categories</h1>
+            <p className="categoriesHeadTwo">Here you can select a link below to filter the reviews for a list of reviews on games that fall under the specified category:</p>
                 <ul className="categoriesList">
                 {
                     categories.map((element) => {

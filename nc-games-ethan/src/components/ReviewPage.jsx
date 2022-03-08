@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { getSingleReview } from "../utils/api";
+import { getSingleReview, patchReviewById } from "../utils/api";
 import Comments from "./Comments";
 
 const ReviewPage = () => {
@@ -15,6 +15,16 @@ const ReviewPage = () => {
             setSingleReview(singleReviewFromServer);
         })
     },[]);
+    
+    const handleVote = (increment) => {
+        setSingleReview((currReview) => {
+            console.log(currReview)
+            const copyReview = currReview;
+            copyReview.votes += increment;
+            return copyReview;
+        })
+        patchReviewById(increment, review_id);
+    }
 
     console.log(singleReview);
 
@@ -26,7 +36,9 @@ const ReviewPage = () => {
                 <img src={`${singleReview.review_img_url}`} alt={`${singleReview.title}`} width="100" height="100"></img>
                 <p>{singleReview.review_body}</p>
                 <p>Comments:</p>
-                <Comments></Comments>
+                <Comments votes={singleReview.votes}/> <button onClick={() => {
+                    handleVote(1);
+                }}>Vote +</button>
             </li>
             </ul>
         </div>

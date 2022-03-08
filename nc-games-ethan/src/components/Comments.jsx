@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { getSingleComment } from "../utils/api";
 
-const Comments = () => {
+const Comments = ({votes}) => {
 
     let {review_id} = useParams();
 
@@ -15,14 +15,11 @@ const Comments = () => {
         })
     }, []);
 
-    console.log(singleComment, "bazinga");
-
     return (
-        <div>
+        <div className="commentComponent">
             <ul className="reviewLi">
                 {
                     singleComment.map((element, id) => {
-                        console.log(element.row, "hello")
                         let elementRow = element.row;
                         let splitElement = elementRow.split(",");
                         let moreSplitElement = splitElement[4].split(")");
@@ -33,7 +30,8 @@ const Comments = () => {
                         )
                     })
                 }
-            </ul>
+            </ul> 
+            <p className="votesP">Votes: {votes}</p>
         </div>
     )
 }

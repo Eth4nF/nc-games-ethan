@@ -10,8 +10,11 @@ const NavBar = () => {
             <Link to="/categories">
                 <p className="NavLink">Categories</p>
             </Link>
-            <Link to="/addReview">
-                <p className="NavLink">Add Review</p>
+            <Link to="/users">
+                <p className="NavLink">Users</p>
+            </Link>
+            <Link to="/reviews">
+                <p className="NavLink">Reviews</p>
             </Link>
         </nav>
     )

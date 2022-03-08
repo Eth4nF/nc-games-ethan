@@ -30,8 +30,8 @@ export const getSingleComment = (reviewNumber) => {
     })
 }
 
-export const getSingleUser = (userName) => {
-    return ncGames.get(`/api/users/${userName}}`)
+export const getUsers = (userName) => {
+    return ncGames.get(`/api/users`)
     .then((res) => {
         return res.data;
     })
@@ -42,4 +42,10 @@ export const getFilteredReviews = (category) => {
     .then((res) => {
         return res.data;
     })
+}
+
+export const patchReviewById = (incVote, review_id) => {
+    return ncGames
+        .patch(`/api/reviews/${review_id}`, { inc_votes: incVote })
+        .then((res) => { return res.data });
 }
