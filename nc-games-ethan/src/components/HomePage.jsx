@@ -20,6 +20,7 @@ const HomePage = () => {
     return (
       <div >
         <h1 className="reviewHead">HomePage</h1>
+        <button className="voteSort">Sort By Votes</button>
           <ul className="reviewList">
             {
               reviews.map((element) => {

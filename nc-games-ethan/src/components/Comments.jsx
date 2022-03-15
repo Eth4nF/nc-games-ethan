@@ -17,21 +17,20 @@ const Comments = ({votes}) => {
 
     return (
         <div className="commentComponent">
-            <ul className="reviewLi">
+            <ul>
                 {
                     singleComment.map((element, id) => {
                         let elementRow = element.row;
                         let splitElement = elementRow.split(",");
                         let moreSplitElement = splitElement[4].split(")");
                         return (
-                            <li key={id}>
+                            <li key={id} className="newReviewLi">
                                 {moreSplitElement[0]}
                             </li>
                         )
                     })
                 }
             </ul> 
-            <p className="votesP">Votes: {votes}</p>
         </div>
     )
 }

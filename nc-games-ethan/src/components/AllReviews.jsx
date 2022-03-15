@@ -13,11 +13,19 @@ const AllReviews = () => {
         })
     }, [])
 
+    const handleSort = () => {
+        console.log("hello")
+    }
+
     console.log(reviews)
 
     return (
         <div>
             <h1 className="reviewHead">Reviews</h1>
+            <label htmlFor="Select option">Sort by</label>
+						<select>
+							<option onChange={handleSort}>Votes</option>
+						</select>
             <ul className="reviewList">
                 {
                     reviews.map((element, id) => {

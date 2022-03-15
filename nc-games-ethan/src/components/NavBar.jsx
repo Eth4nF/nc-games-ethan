@@ -13,9 +13,9 @@ const NavBar = () => {
             <Link to="/users">
                 <p className="NavLink">Users</p>
             </Link>
-            <Link to="/reviews">
+            {/* <Link to="/reviews">
                 <p className="NavLink">Reviews</p>
-            </Link>
+            </Link> */}
         </nav>
     )
 }

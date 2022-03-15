@@ -35,12 +35,16 @@ const ReviewPage = () => {
             <li key={review_id} className="reviewLi">
                 <img src={`${singleReview.review_img_url}`} alt={`${singleReview.title}`} width="100" height="100"></img>
                 <p>{singleReview.review_body}</p>
-                <p>Comments:</p>
-                <Comments votes={singleReview.votes}/> <button onClick={() => {
+                <p>Votes: {singleReview.votes}</p>
+                <button onClick={() => {
                     handleVote(1);
                 }}>Vote +</button>
             </li>
             </ul>
+            <div className="commentsBox">
+                <p className="commentText">Comments:</p>
+                <Comments /> 
+            </div>
         </div>
     )
 }

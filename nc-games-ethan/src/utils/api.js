@@ -40,6 +40,7 @@ export const getUsers = (userName) => {
 export const getFilteredReviews = (category) => {
     return ncGames.get(`/api/reviews/?category=${category}`)
     .then((res) => {
+        console.log(res.data);
         return res.data;
     })
 }
