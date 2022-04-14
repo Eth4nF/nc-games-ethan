@@ -10,12 +10,13 @@ import FilteredCategory from './components/FilteredCategory';
 import AllReviews from './components/AllReviews';
 import RequireUserLogin from "./components/RequireUserLogin";
 import SortedReviews from './components/SortedReviews';
-
+import { UserProvider } from "./contexts/UserContexts"
 
 function App() {
   return (
     <BrowserRouter>
-    {/* <RequireUserLogin> */}
+    <UserProvider>
+    <RequireUserLogin>
       <NavBar/>
         <Routes>
           <Route path ="/" element={<HomePage/>}/>
@@ -27,7 +28,8 @@ function App() {
           <Route path="/reviews/:sort" element={<SortedReviews/>}/>
           {/* <Route path="/reviews" element={<AllReviews/>} /> */}
         </Routes>
-        {/* </RequireUserLogin> */}
+        </RequireUserLogin>
+        </UserProvider>
     </BrowserRouter>
   );
 }

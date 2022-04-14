@@ -147,4 +147,23 @@
   margin: auto;
   flex-direction: column;
   justify-content: center;
+  text-align: center;
+}
+
+.loginForm {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 40%;
+  margin-top: 0%;
+  align-items: center;
+}
+
+.commentForm {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 40%;
+  margin-top: 0%;
+  align-items: center;
 }

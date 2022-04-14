@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState} from "react";
 import { useParams } from "react-router";
-import { getSingleReview, patchReviewById } from "../utils/api";
+import { UserContexts } from "../contexts/UserContexts";
+import { getSingleComment, getSingleReview, patchReviewById, postReviewComments } from "../utils/api";
 import Comments from "./Comments";
 
 const ReviewPage = () => {
 
     let {review_id} = useParams()
+    const { user, isLoggedIn } = useContext(UserContexts);
+    const [newComment, setNewComment] = useState('');
+    const [isError, setIsError] = useState(false);
+    const [reviewComments, setReviewComments] = useState([]);
 
     const [singleReview, setSingleReview] = useState([]);
 
@@ -15,6 +20,16 @@ const ReviewPage = () => {
             setSingleReview(singleReviewFromServer);
         })
     },[]);
+
+    useEffect(() => {
+        getSingleComment(review_id)
+        .then((res) => {
+            setReviewComments(res);
+        })
+        .catch((err) => [
+            console.log(err)
+        ])
+    },  [])
     
     const handleVote = (increment) => {
         setSingleReview((currReview) => {
@@ -24,9 +39,29 @@ const ReviewPage = () => {
             return copyReview;
         })
         patchReviewById(increment, review_id);
-    }
+    };
 
-    console.log(singleReview);
+    const handleCommentInput = (event) => {
+		const { value } = event.target
+		setNewComment(value)
+	};
+
+    const handleCommentPost = (event) => {
+		setIsError(false)
+		event.preventDefault();
+		postReviewComments(review_id, user.username, newComment).then((res) => {
+			setReviewComments((currComments) => {
+				let newReviewComments = [...currComments, res]
+				return newReviewComments
+			})
+		}).catch((err) => {
+			setIsError(true)
+			console.log(err)
+		})
+		setNewComment('')
+	};
+
+    console.log(reviewComments);
 
     return (
         <div>
@@ -43,8 +78,21 @@ const ReviewPage = () => {
             </ul>
             <div className="commentsBox">
                 <p className="commentText">Comments:</p>
-                <Comments /> 
+                <Comments />
             </div>
+            {isLoggedIn ? (
+                <form onSubmit={handleCommentPost} className="commentForm">
+                    <label>Post a comment!</label>
+                <input
+                    type="text"
+                    onChange={handleCommentInput}
+                    placeholder="Post a comment!"
+                    value={newComment}
+                    />
+                    <button type="submit">submit</button>
+                    {isError ? <p>I'm sorry, your comment could not be posted. Please try again.</p> : null}
+                </form>
+            ) : null}
         </div>
     )
 }

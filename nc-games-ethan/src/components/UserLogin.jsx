@@ -9,7 +9,7 @@ const UserLogin = () => {
 
     useEffect(() => {
         getUsers().then((res) => {
-            setUsers(res.users)
+            setUsers(res.user)
 		}).catch((err) => {
 			console.log(err)
 		})
@@ -25,8 +25,32 @@ const UserLogin = () => {
         setUsername(value);
     };
 
+    console.log(users)
+
     return (
-			<h1>Login</h1>
+        <div>
+			<h1 className="reviewHead">Login</h1>
+            <form onSubmit={handleSubmit} className="loginForm">
+                <label htmlFor="user">Select your username</label>
+                <select
+                    value={username}
+                    placeholder="select a username"
+                    onChange={handleUserSelect}
+                >
+                    <option value="">Select username...</option>
+                    {users.map((user, index) => {
+                        return (
+                            <option key={index} value={user.username}>
+                                {user.username}
+                            </option>
+                        );
+                    })}
+                    </select>
+                    <button type="submit">
+                        submit
+                    </button>
+            </form>
+        </div>
 		);
 };
 

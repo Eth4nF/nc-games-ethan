@@ -50,3 +50,14 @@ export const patchReviewById = (incVote, review_id) => {
         .patch(`/api/reviews/${review_id}`, { inc_votes: incVote })
         .then((res) => { return res.data });
 }
+
+export const postReviewComments = (review_id, username, body) => {
+    return ncGames
+			.post(`api/reviews/${review_id}/comments`, {
+				username: username,
+				body: body,
+			})
+			.then((res) => {
+				return res.data.comment
+			});
+}

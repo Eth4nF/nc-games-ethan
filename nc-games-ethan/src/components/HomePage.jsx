@@ -20,7 +20,7 @@ const HomePage = () => {
     return (
       <div >
         <h1 className="reviewHead">HomePage</h1>
-        <button className="voteSort" onClick={handleButton()}>Sort By Votes</button>
+        <Link to="/reviews/votes" className="voteSort">Sort By Votes</Link>
           <ul className="reviewList">
             {
               reviews.map((element) => {
